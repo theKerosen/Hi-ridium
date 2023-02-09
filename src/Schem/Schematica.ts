@@ -36,19 +36,7 @@ const ReportSchem = model("Report", ReportSchema);
 //
 // ##########################################################
 //
-const OpiniãoSchema = new Schema({
-  OpUser: String,
-  OpId: String,
-  OpKey: String,
-  OpMId: String,
-  alreadyOn: {
-    type: Boolean,
-    default: false,
-  },
-});
-const OpSchem = model("Opinião", OpiniãoSchema);
-//
 // ##########################################################
 //
 
-export { CanalSchem, blacklistSchem, ReportSchem, OpSchem };
+export { CanalSchem, blacklistSchem, ReportSchem };
