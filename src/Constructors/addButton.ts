@@ -4,10 +4,10 @@ class createButton {
   name: any;
   style: any;
   /**
-   * @param {Array} id button's custom IDs
-   * @param {Array} name button's names
-   * @param {Array} style style of the buttons (PRIMARY, SECONDARY, SUCCESS, DANGER, LINK)
-   * @param {Array} emoji unicode emojis on the buttons
+   * @param {Array} id button custom ID
+   * @param {Array} name button name
+   * @param {Array} style style of the button (PRIMARY, SECONDARY, SUCCESS, DANGER, LINK)
+   * @param {Array} emoji unicode emojis
    */
   constructor(id: any, name: any, style: any) {
     this.id = id;
