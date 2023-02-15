@@ -33,7 +33,7 @@ Embed
 let Nice_Embed = new Embed()
   .Text("Author", "Description", "Color", "Footer")
 
-interaction.reply({ embeds: [Embed] })
+interaction.reply({ embeds: [Nice_Embed] })
 ```
 Modal
 ```typescript
@@ -65,7 +65,7 @@ let Good_Modal = new Modal("hello1", "Hello!")
 //the first one has a 32 character limit,
 //the second one has a 125 character limit,
 //the second one is not required.
-interaction.showModal(Modal)
+interaction.showModal(Good_Modal)
 ```
 Buttons
 ```typescript
@@ -75,7 +75,7 @@ Buttons
 
 let Cool_Button = new Button().builder(["Id"], ["Label"], ["Style"])
 
-interaction.reply({ components: [Button] }) 
+interaction.reply({ components: [Cool_Button] }) 
 
 ```
 Select Menu
