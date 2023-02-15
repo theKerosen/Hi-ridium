@@ -1,13 +1,8 @@
 import { Schema, model } from "mongoose";
 
-const blacklist = new Schema({
-  UserId: String,
-  dateBanned: Date,
-});
-const blacklistSchem = model("blacklist", blacklist);
-//
+
 // ##########################################################
-//
+
 const Canal = new Schema({
   guildId: String,
   sChannelId: String,
@@ -18,10 +13,10 @@ const Canal = new Schema({
   oChannelName: String,
 });
 const CanalSchem = model("Channel", Canal);
-//
+
 // ##########################################################
-//
-const ReportSchema = new Schema(
+
+const Report = new Schema(
   {
     ReportedUserId: String,
     Reports: Object,
@@ -32,11 +27,25 @@ const ReportSchema = new Schema(
   },
   { strict: false }
 );
-const ReportSchem = model("Report", ReportSchema);
-//
-// ##########################################################
-//
-// ##########################################################
-//
+const ReportSchem = model("Report", Report);
 
-export { CanalSchem, blacklistSchem, ReportSchem };
+// ##########################################################
+
+const Rep = new Schema({
+  UserId: String,
+  createdAt: Date,
+  isPositive: {
+    type: Boolean,
+    default: false,
+  },
+  Comments: Object,
+  Reputation: {
+    type: Number,
+    default: 0,
+  },
+});
+const RepSchem = model("Rep", Rep)
+
+// ##########################################################
+
+export { CanalSchem, RepSchem, ReportSchem };

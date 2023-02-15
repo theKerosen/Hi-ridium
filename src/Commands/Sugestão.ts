@@ -1,5 +1,5 @@
 import { Command } from "../Utils/interfaces";
-import { reModal } from "../Constructors/reModal";
+import { Modal } from "../Constructors/Modal";
 export = {
   data: {
     name: "enviar",
@@ -21,7 +21,7 @@ export = {
     ],
   },
   async execute(client, interaction) {
-    const modal = new reModal("sGuildModal", "Sugestão").insertInputs(
+    const modal = new Modal("m_Suggestion", "Sugestão").insertInputs(
       ["sGuildText1", "sGuildText2"],
       [
         `Qual é a ideia, ${interaction.user.username}?`,

@@ -1,12 +1,12 @@
-class selMenu {
-  customId: any;
-  type: any;
-  placeholder: any;
-  label: any;
-  value: any;
-  description: any;
-  options: any;
-  disabled: any;
+class SelectMenu {
+  customId: string[];
+  type: number[];
+  placeholder: string[];
+  label: string[];
+  value: string[];
+  description: string[];
+  options: object[];
+  disabled: boolean[];
   /**
    *
    * @param {Array} customId custom ID of the Menu
@@ -21,11 +21,11 @@ class selMenu {
     disabled: boolean[],
     options?: [{ label: string[]; description: string[]; value: string[] }]
   ) {
-    this.options = options;
+    this.options = options!;
     this.customId = customId;
-    this.label = options?.[0].label;
-    this.description = options?.[0].description;
-    this.value = options?.[0].value;
+    this.label = options?.[0].label!;
+    this.description = options?.[0].description!;
+    this.value = options?.[0].value!;
     this.type = type;
     this.placeholder = placeholder;
     this.disabled = disabled;
@@ -61,4 +61,4 @@ class selMenu {
     return selectMenu[0][0];
   }
 }
-export { selMenu };
+export { SelectMenu };

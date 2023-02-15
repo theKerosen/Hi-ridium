@@ -1,6 +1,4 @@
 import { readdirSync } from "fs";
-import * as dotenv from "dotenv";
-dotenv.config();
 import { client } from ".";
 
 async function handler() {

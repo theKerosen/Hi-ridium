@@ -1,5 +1,5 @@
-import { reEmbed } from "../Constructors/reEmbed";
-import { selMenu } from "../Constructors/selMenu";
+import { Embed } from "../Constructors/Embed";
+import { SelectMenu } from "../Constructors/SelectMenu";
 import { ReportSchem } from "../Schem/Schematica";
 import { Command } from "../Utils/interfaces";
 export = {
@@ -17,9 +17,9 @@ export = {
     ],
   },
   async execute(client, interaction) {
-    var reportedUser = interaction.options.getUser("usuário");
-    let menu = new selMenu(
-      ["report"],
+    let reportedUser = interaction.options.getUser("usuário");
+    let menu = new SelectMenu(
+      ["m_Report"],
       [3],
       ["► Selecione o tipo da denúncia..."],
       [false],
@@ -70,13 +70,11 @@ export = {
         },
       ]
     ).builder();
-    let embed = new reEmbed(
+    let embed = new Embed("YELLOW").Text(
       "<⚠️> | Denúncia",
       `O usuário denunciado será "\`${reportedUser?.username}\`"\n por favor, selecione o motivo abaixo.`,
-      "YELLOW",
-      `${reportedUser?.id}`,
-      `${interaction.user.avatarURL({ dynamic: true })}`
-    ).builder();
+      `${reportedUser?.id}`
+    );
     await ReportSchem.findOneAndUpdate(
       {
         ReportedUserId: reportedUser?.id,

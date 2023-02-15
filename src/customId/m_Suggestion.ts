@@ -1,5 +1,5 @@
 import { CanalSchem } from "../Schem/Schematica";
-import { reEmbed } from "../Constructors/reEmbed";
+import { Embed } from "../Constructors/Embed";
 export async function execute(interaction: any, client: any) {
   const findChannel = await CanalSchem.findOne({
     guildId: interaction.guildId,
@@ -8,13 +8,11 @@ export async function execute(interaction: any, client: any) {
   var Text1 = await interaction.fields.getTextInputValue("sGuildText1");
   var Text2 = await interaction.fields.getTextInputValue("sGuildText2");
 
-  let embed = new reEmbed(
+  let embed = new Embed("BLURPLE").Text(
     `${interaction.user.username} > "${Text1}"`,
-    `BLURPLE`,
     `\`\`\`${Text2}\`\`\``,
-    interaction.user,
-    `${interaction.user.avatarURL({ dynamic: true })}`
-  ).builder();
+    `${new Date()}`
+  );
   let message = await suggestionChannel.send({
     embeds: [embed],
     fetchReply: true,

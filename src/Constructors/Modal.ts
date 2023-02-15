@@ -1,6 +1,6 @@
-class reModal {
-  modalId: any;
-  modalTitle: any;
+class Modal {
+  modalId: string;
+  modalTitle: string;
   /**
    * @param {String} modalId
    * @param {String} modalTitle
@@ -21,14 +21,14 @@ class reModal {
    * @param {Array} Required BOOLEAN
    */
   insertInputs(
-    customId: any,
-    Label: any,
-    Style: any,
-    MinLength: any,
-    MaxLength: any,
-    Required: any
+    customId: string[],
+    Label: string[],
+    Style: string[],
+    MinLength: number[],
+    MaxLength: number[],
+    Required: boolean[]
   ): void {
-    const modal: any = {
+    let modal: any = {
       title: `${this.modalTitle}`,
       custom_id: `${this.modalId}`,
       components: Array(),
@@ -46,11 +46,10 @@ class reModal {
         minLength: `${MinLength[i]}`,
         required: `${Required[i]}`,
         style: `${Style[i]}`,
-        
       });
       modal.components.push(textinput);
     }
     return modal;
   }
 }
-export { reModal };
+export { Modal };
