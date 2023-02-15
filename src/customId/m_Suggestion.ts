@@ -8,9 +8,10 @@ export async function execute(interaction: any, client: any) {
   var Text1 = await interaction.fields.getTextInputValue("sGuildText1");
   var Text2 = await interaction.fields.getTextInputValue("sGuildText2");
 
-  let embed = new Embed("BLURPLE").Text(
+  let embed = new Embed().Text(
     `${interaction.user.username} > "${Text1}"`,
     `\`\`\`${Text2}\`\`\``,
+    `BLURPLE`,
     `${new Date()}`
   );
   let message = await suggestionChannel.send({

@@ -1,25 +1,21 @@
 //THIS FILE IS NOT THE FINAL VERSION, FIXES ARE COMING.
 //
 
-import { MessageEmbed } from "discord.js";
+import { ColorResolvable, MessageEmbed } from "discord.js";
 let Body = new MessageEmbed();
 class Embed {
-  Author: any;
-  Color: any;
-  Description: any;
-  Thumbnail: any;
-  Image: any;
-  Footer: any;
-  constructor(Color: string) {
-    this.Color = Color;
-  }
-  Text(Author: string, Description: string, Footer: string) {
+  Text(
+    Author: string,
+    Description: string,
+    Color: ColorResolvable,
+    Footer: string
+  ) {
     Body.setAuthor({
       name: Author,
     });
-    Body.setColor(this.Color);
-    Body.setDescription(Description!);
-    Body.setFooter({ text: `${Footer!}` });
+    Body.setColor(Color);
+    Body.setDescription(Description);
+    Body.setFooter({ text: Footer });
     return Body;
   }
 
@@ -30,8 +26,8 @@ class Embed {
   TextFields(FieldTitle: string[], FieldValue: string[], inline?: boolean[]) {
     for (let i = 0; i < FieldTitle.length; i++) {
       Body.addFields({
-        name: `${FieldTitle[i]}`,
-        value: `${FieldValue[i]}`,
+        name: FieldTitle[i],
+        value: FieldValue[i],
         inline: inline![i],
       });
     }

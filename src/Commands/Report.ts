@@ -18,11 +18,10 @@ export = {
   },
   async execute(client, interaction) {
     let reportedUser = interaction.options.getUser("usuário");
-    let menu = new SelectMenu(
-      ["m_Report"],
-      [3],
-      ["► Selecione o tipo da denúncia..."],
-      [false],
+    let menu = new SelectMenu().builder(
+      "m_Report",
+      3,
+      "► Selecione o tipo da denúncia...",
       [
         {
           label: [
@@ -69,10 +68,11 @@ export = {
           ],
         },
       ]
-    ).builder();
-    let embed = new Embed("YELLOW").Text(
+    );
+    let embed = new Embed().Text(
       "<⚠️> | Denúncia",
       `O usuário denunciado será "\`${reportedUser?.username}\`"\n por favor, selecione o motivo abaixo.`,
+      `YELLOW`,
       `${reportedUser?.id}`
     );
     await ReportSchem.findOneAndUpdate(

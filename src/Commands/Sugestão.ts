@@ -1,5 +1,6 @@
 import { Command } from "../Utils/interfaces";
 import { Modal } from "../Constructors/Modal";
+import { SelectMenu } from "../Constructors/SelectMenu";
 export = {
   data: {
     name: "enviar",
@@ -22,7 +23,7 @@ export = {
   },
   async execute(client, interaction) {
     const modal = new Modal("m_Suggestion", "Sugestão").insertInputs(
-      ["sGuildText1", "sGuildText2"],
+      ["SuggestionInput1", "SuggestionInput2"],
       [
         `Qual é a ideia, ${interaction.user.username}?`,
         `Conte me mais, ${interaction.user.username}!`,
@@ -32,6 +33,6 @@ export = {
       [150, 250],
       [true, true]
     );
-    await interaction.showModal(modal!);
+    await interaction.showModal(modal);
   },
 } as Command;

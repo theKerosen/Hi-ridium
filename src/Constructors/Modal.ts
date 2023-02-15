@@ -1,3 +1,5 @@
+import { ModalOptions } from "discord.js";
+
 class Modal {
   modalId: string;
   modalTitle: string;
@@ -10,15 +12,14 @@ class Modal {
     this.modalTitle = modalTitle;
   }
   /**
-   *
-   * @param {String} modalId
-   * @param {String} modalTitle
-   * @param {Array} customId STRING
-   * @param {Array} Label STRING
+   * @param {String} modalId STRING
+   * @param {String} modalTitle STRING
+   * @param {Array} customId ARRAY STRING
+   * @param {Array} Label ARRAY STRING
    * @param {Array} Style PARAGRAPH, SHORT, STRING
-   * @param {Array} MinLength NUMBER
-   * @param {Array} MaxLength NUMBER
-   * @param {Array} Required BOOLEAN
+   * @param {Array} MinLength ARRAY NUMBER
+   * @param {Array} MaxLength ARRAY NUMBER
+   * @param {Array} Required  ARRAY BOOLEAN
    */
   insertInputs(
     customId: string[],
@@ -27,27 +28,32 @@ class Modal {
     MinLength: number[],
     MaxLength: number[],
     Required: boolean[]
-  ): void {
-    let modal: any = {
-      title: `${this.modalTitle}`,
-      custom_id: `${this.modalId}`,
-      components: Array(),
+  ) {
+    interface TextInput {
+      type: number;
+      components: Array<Object>;
+    }
+
+    let modal: ModalOptions = {
+      title: this.modalTitle,
+      customId: this.modalId,
+      components: [],
     };
     for (let i = 0; i < customId.length; i++) {
-      let textinput = {
-        type: "ACTION_ROW",
-        components: Array(),
+      let TextInput: TextInput = {
+        type: 1,
+        components: [],
       };
-      textinput.components.push({
-        type: "TEXT_INPUT",
-        customId: `${customId[i]}`,
-        label: `${Label[i]}`,
-        maxLength: `${MaxLength[i]}`,
-        minLength: `${MinLength[i]}`,
-        required: `${Required[i]}`,
-        style: `${Style[i]}`,
+
+      TextInput.components.push({
+        type: 4,
+        custom_id: customId[i],
+        label: Label[i],
+        style: Style[i],
+        min_length: MinLength[i],
+        max_length: MaxLength[i],
+        required: Required[i],
       });
-      modal.components.push(textinput);
     }
     return modal;
   }

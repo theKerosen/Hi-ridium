@@ -12,9 +12,10 @@ export async function execute(interaction: any, client: any) {
   const reportedUser = client.users.cache.get(
     interaction.message.embeds[0].footer.text
   );
-  const embed = new Embed("YELLOW").Text(
+  const embed = new Embed().Text(
     " ⚠️| Denúncia",
     `${reportedUser} foi reportado por <@${interaction.user.id}>\n> Motivo: \`${interaction.values[0]}\``,
+    `YELLOW`,
     `${new Date()}`
   );
   let reportChannel = await client.channels.cache.get(findChannel?.dChannelId);
