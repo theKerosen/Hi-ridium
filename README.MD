@@ -1,8 +1,10 @@
-# Hi-ridium Project
+
+<h1 align="left">Hi-ridium Project
+  <img src="https://cdn.discordapp.com/attachments/943547363031670785/1076002554170855454/Sem_Titulo-7.png" height="25" alt="stats graph"/></h1> 
 
 Hi-ridium is a Project focused on my self-learning journey on how to make global, easily adaptable, highly configurable and fast Discord Bots.
 
-## Constructors/Import
+## Constructors/Imports
 
 I made some useful constructors to use less lines in my code.
 If you wanna use them, just download the "Constructors" folder (inside src), drag it to your project folder and import the constructors like this:
@@ -14,7 +16,7 @@ import { SelectMenu } from "path/to/Constructors/SelectMenu";
 import { Button } from "path/to/Constructors/Button";
 ```
 
-## Usage
+## Constructors/Usage
 
 These constructors are just some kind of *wrapper*, so if you understand quite a bit about how Embeds, Modals, Select Menus and Buttons work, you could easily modify them to your liking.
 
