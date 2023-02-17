@@ -8,7 +8,7 @@ export async function execute(interaction: any, client: any) {
   var Text1 = await interaction.fields.getTextInputValue("sGuildText1");
   var Text2 = await interaction.fields.getTextInputValue("sGuildText2");
 
-  let embed = new Embed().Text(
+  let embed = new Embed().builder(
     `${interaction.user.username} > "${Text1}"`,
     `\`\`\`${Text2}\`\`\``,
     `BLURPLE`,

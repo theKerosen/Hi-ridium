@@ -69,7 +69,7 @@ export = {
         },
       ]
     );
-    let embed = new Embed().Text(
+    let embed = new Embed().builder(
       "<⚠️> | Denúncia",
       `O usuário denunciado será "\`${reportedUser?.username}\`"\n por favor, selecione o motivo abaixo.`,
       `YELLOW`,

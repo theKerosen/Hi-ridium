@@ -1,11 +1,12 @@
-# Hi-ridium Project
+
+<h1 align="left">Hi-ridium Project
+  <img src="https://cdn.discordapp.com/attachments/943547363031670785/1076002554170855454/Sem_Titulo-7.png" height="25" alt="stats graph"/></h1> 
 
 Hi-ridium is a Project focused on my self-learning journey on how to make global, easily adaptable, highly configurable and fast Discord Bots.
 
-## Constructors/Import
+## Constructors/Imports
 
-I made some useful constructors to use less lines in my code.
-If you wanna use them, just download the "Constructors" folder (inside src), drag it to your project folder and import the constructors like this:
+I made some useful constructors to allow for more readability, they look very useful so if you wanna use them, just download the "Constructors" folder (inside src), drag it to your project folder and import the constructors like this:
 
 ```typescript
 import { Embed } from "path/to/Constructors/Embed";
@@ -14,7 +15,7 @@ import { SelectMenu } from "path/to/Constructors/SelectMenu";
 import { Button } from "path/to/Constructors/Button";
 ```
 
-## Usage
+## Constructors/Usage
 
 These constructors are just some kind of *wrapper*, so if you understand quite a bit about how Embeds, Modals, Select Menus and Buttons work, you could easily modify them to your liking.
 
@@ -33,7 +34,7 @@ Embed
 let Nice_Embed = new Embed()
   .Text("Author", "Description", "Color", "Footer")
 
-interaction.reply({ embeds: [Embed] })
+interaction.reply({ embeds: [Nice_Embed] })
 ```
 Modal
 ```typescript
@@ -65,7 +66,7 @@ let Good_Modal = new Modal("hello1", "Hello!")
 //the first one has a 32 character limit,
 //the second one has a 125 character limit,
 //the second one is not required.
-interaction.showModal(Modal)
+interaction.showModal(Good_Modal)
 ```
 Buttons
 ```typescript
@@ -75,7 +76,7 @@ Buttons
 
 let Cool_Button = new Button().builder(["Id"], ["Label"], ["Style"])
 
-interaction.reply({ components: [Button] }) 
+interaction.reply({ components: [Cool_Button] }) 
 
 ```
 Select Menu

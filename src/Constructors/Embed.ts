@@ -1,40 +1,31 @@
-//THIS FILE IS NOT THE FINAL VERSION, FIXES ARE COMING.
-//
-
 import { ColorResolvable, MessageEmbed } from "discord.js";
-let Body = new MessageEmbed();
 class Embed {
-  Text(
+  /**
+   * @param {String} Author The title/Author text
+   * @param {String} Description The description text
+   * @param {ColorResolvable} Color The color
+   * @param {String} Footer The footer text
+   * @param {String} Thumbnail The thumbnail URL
+   * @param {String} Image The image URL
+   */
+  builder(
     Author: string,
     Description: string,
     Color: ColorResolvable,
-    Footer: string
+    Footer: string,
+    Thumbnail?: string,
+    Image?: string
   ) {
-    Body.setAuthor({
-      name: Author,
-    });
-    Body.setColor(Color);
-    Body.setDescription(Description);
-    Body.setFooter({ text: Footer });
-    return Body;
-  }
-
-  Images(Thumbnail?: string, Image?: string) {
-    Body.setThumbnail(Thumbnail!);
-    Body.setImage(Image!);
-  }
-  TextFields(FieldTitle: string[], FieldValue: string[], inline?: boolean[]) {
-    for (let i = 0; i < FieldTitle.length; i++) {
-      Body.addFields({
-        name: FieldTitle[i],
-        value: FieldValue[i],
-        inline: inline![i],
-      });
-    }
+    let Body = new MessageEmbed()
+      .setAuthor({
+        name: Author,
+      })
+      .setColor(Color)
+      .setDescription(Description)
+      .setFooter({ text: Footer })
+      .setThumbnail(Thumbnail!)
+      .setImage(Image!);
     return Body;
   }
 }
-//
-// somehow the textfields() is hooking itself to other embeds. fix asap
-//
 export { Embed };
