@@ -6,8 +6,7 @@ Hi-ridium is a Project focused on my self-learning journey on how to make global
 
 ## Constructors/Imports
 
-I made some useful constructors to make my code more readable.
-If you wanna use them, just download the "Constructors" folder (inside src), drag it to your project folder and import the constructors like this:
+I made some useful constructors to allow for more readability, they look very useful so if you wanna use them, just download the "Constructors" folder (inside src), drag it to your project folder and import the constructors like this:
 
 ```typescript
 import { Embed } from "path/to/Constructors/Embed";
