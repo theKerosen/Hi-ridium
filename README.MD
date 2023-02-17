@@ -17,7 +17,6 @@ import { Button } from "path/to/Constructors/Button";
 ## Constructors/Usage
 
 These constructors are just a _wrapper_, so if you understand quite a bit about how Embeds, Modals, Select Menus and Buttons work, you could easily modify them to your liking.
-
 _the Developer Wiki can and WILL help you here._
 
 Embed
