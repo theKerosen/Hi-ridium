@@ -1,6 +1,5 @@
 import { Command } from "../Utils/interfaces";
 import { Modal } from "../Constructors/Modal";
-import { SelectMenu } from "../Constructors/SelectMenu";
 export = {
   data: {
     name: "enviar",

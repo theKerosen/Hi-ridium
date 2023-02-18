@@ -27,9 +27,9 @@ class SelectMenu {
         }
       ];
     }
-    let SelectMenu: Array<ArrayMenu> = [];
+    const SelectMenu: Array<ArrayMenu> = [];
     for (let i = 0; i < customId.length; i++) {
-      let Menu: ArrayMenu = {
+      const Menu: ArrayMenu = {
         type: 1,
         components: [
           {

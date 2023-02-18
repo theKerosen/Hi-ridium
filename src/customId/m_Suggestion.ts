@@ -4,17 +4,17 @@ export async function execute(interaction: any, client: any) {
   const findChannel = await CanalSchem.findOne({
     guildId: interaction.guildId,
   });
-  let suggestionChannel = client.channels.cache.get(findChannel?.sChannelId);
-  var Text1 = await interaction.fields.getTextInputValue("sGuildText1");
-  var Text2 = await interaction.fields.getTextInputValue("sGuildText2");
+  const suggestionChannel = client.channels.cache.get(findChannel?.sChannelId);
+  const Text1 = await interaction.fields.getTextInputValue("sGuildText1");
+  const Text2 = await interaction.fields.getTextInputValue("sGuildText2");
 
-  let embed = new Embed().builder(
+  const embed = new Embed().builder(
     `${interaction.user.username} > "${Text1}"`,
     `\`\`\`${Text2}\`\`\``,
     `BLURPLE`,
     `${new Date()}`
   );
-  let message = await suggestionChannel.send({
+  const message = await suggestionChannel.send({
     embeds: [embed],
     fetchReply: true,
   });

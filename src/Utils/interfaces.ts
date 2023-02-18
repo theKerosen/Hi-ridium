@@ -8,5 +8,8 @@ export interface Command {
     type?: number;
     options?: ApplicationCommandOption[];
   };
-  execute(client: Hiridium, interaction: CommandInteraction): any;
+  execute(client: Hiridium, interaction: CommandInteraction): void;
+}
+export interface ICustomID {
+  execute(client: Hiridium, interaction: CommandInteraction): void;
 }

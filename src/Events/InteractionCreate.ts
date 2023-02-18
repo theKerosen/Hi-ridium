@@ -1,11 +1,12 @@
 export default async (interaction: any, client: any) => {
-  if (interaction?.customId) {
-    (await import(`../customId/${interaction?.customId}`)).execute(
+  if (interaction?.id) {
+    (await import(`../customId/${interaction?.id}`)).execute(
       interaction,
       client
     );
+    console.log(interaction);
   }
-  let command = client.commands.get(interaction.commandName);
+  const command = client.commands.get(interaction.commandName);
   if (interaction.user.bot === true) return;
   if (!command) return;
   try {

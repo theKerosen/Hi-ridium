@@ -31,16 +31,16 @@ class Modal {
   ) {
     interface TextInput {
       type: number;
-      components: Array<Object>;
+      components: Array<object>;
     }
 
-    let modal: ModalOptions = {
+    const modal: ModalOptions = {
       title: this.modalTitle,
       customId: this.modalId,
       components: [],
     };
     for (let i = 0; i < customId.length; i++) {
-      let TextInput: TextInput = {
+      const TextInput: TextInput = {
         type: 1,
         components: [],
       };
