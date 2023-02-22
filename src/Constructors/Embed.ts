@@ -16,7 +16,7 @@ class Embed {
     Thumbnail?: string,
     Image?: string
   ) {
-    let Body = new MessageEmbed()
+    const Body = new MessageEmbed()
       .setAuthor({
         name: Author,
       })
