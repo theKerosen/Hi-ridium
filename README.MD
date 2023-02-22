@@ -26,7 +26,7 @@ Embed
 // NOTE: After you use ".Text()" the embed will automatically turn into
 // an Embed Object, essentially having the same functionality as vanilla Discord.js.
 //
-let Nice_Embed = new Embed().Text(
+const Nice_Embed = new Embed().Text(
   "Author",
   "Description",
   "Color",
@@ -55,7 +55,7 @@ let Good_Modal = new Modal("Modal Id", "Modal Title").insertInputs(
 );
 
 //Too hard to understand? here is an Example:
-let Good_Modal = new Modal("hello1", "Hello!").insertInputs(
+const Good_Modal = new Modal("hello1", "Hello!").insertInputs(
   ["hellotext1", "hellotext2"],
   ["What is your name?", "Tell us a bit about yourself."],
   ["SHORT", "PARAGRAPH"],
@@ -73,7 +73,7 @@ Buttons
 // Same stuff as the Modals.
 //
 
-let Cool_Button = new Button().builder(["Id"], ["Label"], ["Style"]);
+const Cool_Button = new Button().builder(["Id"], ["Label"], ["Style"]);
 
 interaction.reply({ components: [Cool_Button] });
 ```
@@ -84,7 +84,7 @@ Select Menu
 //
 // This one is very helpful since select menus are boring.
 //
-let Select_Menu = new SelectMenu().builder("Id", 3 /*Type*/, "Placeholder", [
+const Select_Menu = new SelectMenu().builder("Id", 3 /*Type*/, "Placeholder", [
   {
     label: ["Cool label 1", "Cool label 2"],
     description: [
