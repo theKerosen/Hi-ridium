@@ -45,7 +45,7 @@ Modal
 // Modals are a bit quirky,
 // You can add new text fields by using Arrays.
 //
-let Good_Modal = new Modal("Modal Id", "Modal Title").insertInputs(
+const Good_Modal = new Modal("Modal Id", "Modal Title").insertInputs(
   ["custom IDs"],
   ["Labels"],
   ["Styles"],
