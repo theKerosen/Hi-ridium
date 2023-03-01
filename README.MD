@@ -3,7 +3,7 @@
 
 Hi-ridium is a Project focused on my self-learning journey on how to make global, easily adaptable, highly configurable and fast Discord Bots.
 
-## Da enviroment variables!
+## Da environment variables!
 
 First of all, you need a good .env to start with.
 ```env
@@ -95,6 +95,7 @@ Don't worry, there are only three of those here.
 - ButtonInteraction;
 - ModalSubmitInteraction;
 - SelectMenuInteraction.
+
 Yeah, pretty easy, right? Right...?
 
 Anyway, just remember those, they are very important.
@@ -220,4 +221,3 @@ Please make sure to update tests as appropriate.
 [MIT](https://choosealicense.com/licenses/mit/)
 
 *also.. don't eat folders.*
-````
