@@ -3,6 +3,21 @@
 
 Hi-ridium is a Project focused on my self-learning journey on how to make global, easily adaptable, highly configurable and fast Discord Bots.
 
+##Da enviroment variables!
+
+First of all, you need a good .env to start with.
+```env
+#The client's ID
+ID=
+
+#The Token
+TOKEN=
+
+#Mongoose's URI
+MONGO_URI=
+```
+Just create the .env file and fill it up, then you'll be good to go.
+
 ## How to create Commands?
 
 Creating Commands is pretty basic, just go to the "Commands" folder (or the folder that you're curently using for the commands) and create a new file with a very nice name (must be nice),
