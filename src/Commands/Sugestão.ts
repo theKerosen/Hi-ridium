@@ -1,4 +1,4 @@
-import { Command } from "../Utils/interfaces";
+import { Command } from "../Utils/command";
 import { TextInput } from "../Constructors/Modal";
 export = {
   data: {

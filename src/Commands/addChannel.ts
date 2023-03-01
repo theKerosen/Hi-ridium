@@ -1,5 +1,5 @@
 import { CanalSchem } from "../Schem/Schematica";
-import { Command } from "../Utils/interfaces";
+import { Command } from "../Utils/command";
 import { Permissions } from "discord.js";
 
 export = {

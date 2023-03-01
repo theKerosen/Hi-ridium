@@ -1,7 +1,7 @@
 import { Embed } from "../Constructors/Embed";
 import { SelectMenu } from "../Constructors/SelectMenu";
 import { ReportSchem } from "../Schem/Schematica";
-import { Command } from "../Utils/interfaces";
+import { Command } from "../Utils/command";
 export = {
   data: {
     name: "denunciar",

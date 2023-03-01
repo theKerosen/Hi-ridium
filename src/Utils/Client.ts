@@ -2,7 +2,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import { Client, Collection } from "discord.js";
 import { connect, set } from "mongoose";
-import { Command } from "./interfaces";
+import { Command } from "./command";
 
 class Hiridium extends Client {
   commands: Collection<string, Command> = new Collection();
