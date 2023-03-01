@@ -3,7 +3,7 @@
 
 Hi-ridium is a Project focused on my self-learning journey on how to make global, easily adaptable, highly configurable and fast Discord Bots.
 
-##Da enviroment variables!
+## Da enviroment variables!
 
 First of all, you need a good .env to start with.
 ```env
