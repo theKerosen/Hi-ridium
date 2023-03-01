@@ -49,7 +49,6 @@ class SelectMenu {
         value: options[0].value[i],
       });
     }
-    console.log(SelectMenu[0]);
     return SelectMenu[0];
   }
 }

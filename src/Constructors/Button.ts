@@ -1,4 +1,8 @@
-const { MessageActionRow, MessageButton } = require("discord.js");
+import {
+  MessageActionRow,
+  MessageButton,
+  MessageButtonStyleResolvable,
+} from "discord.js";
 class Button {
   /**
    * @param {Array} id button custom ID
@@ -7,7 +11,7 @@ class Button {
    * @param {Array} emoji unicode emojis
    */
 
-  builder(id: string[], name: string[], style: string[]) {
+  builder(id: string[], name: string[], style: MessageButtonStyleResolvable[]) {
     const button = new MessageActionRow();
     for (let i = 0; i < name.length; i++) {
       button.addComponents(

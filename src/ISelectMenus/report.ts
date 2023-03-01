@@ -1,16 +1,20 @@
+import { SelectMenuInteraction, TextChannel } from "discord.js";
 import { Embed } from "../Constructors/Embed";
 import { ReportSchem } from "../Schem/Schematica";
 import { CanalSchem } from "../Schem/Schematica";
-export async function execute(interaction: any, client: any) {
+import { Hiridium } from "../Utils/Client";
+export async function execute(
+  interaction: SelectMenuInteraction,
+  client: Hiridium
+) {
   interaction.update({
-    ephemeral: true,
     components: [],
   });
   const findChannel = await CanalSchem.findOne({
     guildId: interaction.guildId,
   });
   const reportedUser = client.users.cache.get(
-    interaction.message.embeds[0].footer.text
+    interaction?.message?.embeds[0]?.footer?.text ?? ""
   );
   const embed = new Embed().builder(
     " ⚠️| Denúncia",
@@ -18,7 +22,9 @@ export async function execute(interaction: any, client: any) {
     `YELLOW`,
     `${new Date()}`
   );
-  let reportChannel = await client.channels.cache.get(findChannel?.dChannelId);
+  const reportChannel = await client.channels.cache.get(
+    findChannel?.dChannelId ?? ""
+  );
   await ReportSchem.findOneAndUpdate(
     {},
     {
@@ -42,5 +48,5 @@ export async function execute(interaction: any, client: any) {
     },
     { upsert: true, new: true }
   );
-  reportChannel.send({ embeds: [embed] });
+  (reportChannel as TextChannel).send({ embeds: [embed] });
 }

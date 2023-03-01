@@ -6,7 +6,7 @@ export = {
   data: {
     name: "denunciar",
     description: "► Denuncie um usuário mal-intencionado",
-    type: 1,
+    type: "ACTION_ROW",
     options: [
       {
         name: "usuário",
@@ -17,9 +17,9 @@ export = {
     ],
   },
   async execute(client, interaction) {
-    let reportedUser = interaction.options.getUser("usuário");
-    let menu = new SelectMenu().builder(
-      "m_Report",
+    const reportedUser = interaction.options.getUser("usuário");
+    const menu = new SelectMenu().builder(
+      "report",
       3,
       "► Selecione o tipo da denúncia...",
       [
@@ -69,7 +69,7 @@ export = {
         },
       ]
     );
-    let embed = new Embed().builder(
+    const embed = new Embed().builder(
       "<⚠️> | Denúncia",
       `O usuário denunciado será "\`${reportedUser?.username}\`"\n por favor, selecione o motivo abaixo.`,
       `YELLOW`,

@@ -6,7 +6,7 @@ export = {
   data: {
     name: "canal",
     description: "► [ADMIN] Comando para configuração de canais",
-    type: 1,
+    type: "ACTION_ROW",
     options: [
       {
         name: "selecionar",
@@ -57,7 +57,7 @@ export = {
     ],
   },
   async execute(client, interaction) {
-    const Guild = client.guilds.cache.get(interaction.guildId!);
+    const Guild = client.guilds.cache.get(interaction.guildId ?? "");
     const User = Guild?.members.cache.get(interaction.user.id);
     if (!User?.permissions.has(Permissions.FLAGS.ADMINISTRATOR))
       return interaction.reply({

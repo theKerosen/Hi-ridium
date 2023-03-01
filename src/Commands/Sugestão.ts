@@ -1,27 +1,20 @@
 import { Command } from "../Utils/interfaces";
-import { Modal } from "../Constructors/Modal";
+import { TextInput } from "../Constructors/Modal";
 export = {
   data: {
-    name: "enviar",
-    description: "► Enviar...",
-    type: 1,
+    name: "sugestão",
+    description: "► Enviar sugestão...",
+    type: "ACTION_ROW",
     options: [
       {
-        name: "sugestão",
+        name: "servidor",
         description: "► Enviar uma sugestão...",
-        type: "SUB_COMMAND_GROUP",
-        options: [
-          {
-            name: "servidor",
-            description: "► Envie uma sugestão para a guilda atual",
-            type: "SUB_COMMAND",
-          },
-        ],
+        type: "SUB_COMMAND",
       },
     ],
   },
   async execute(client, interaction) {
-    const modal = new Modal("m_Suggestion", "Sugestão").insertInputs(
+    const modal = new TextInput("sugestão", "Sugestão").insertInputs(
       ["SuggestionInput1", "SuggestionInput2"],
       [
         `Qual é a ideia, ${interaction.user.username}?`,
@@ -30,7 +23,11 @@ export = {
       ["SHORT", "PARAGRAPH"],
       [24, 68],
       [150, 250],
-      [true, true]
+      [true, true],
+      [
+        "Mais cupcakes no chat geral.",
+        "Se os administradores conseguissem bancar uma festa...",
+      ]
     );
     await interaction.showModal(modal);
   },

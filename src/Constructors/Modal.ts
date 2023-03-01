@@ -1,6 +1,18 @@
-import { ModalOptions } from "discord.js";
+import {
+  ModalOptions,
+  MessageComponentType,
+  TextInputStyle,
+  TextInputComponentOptions,
+  MessageActionRow,
+  TextInputComponent,
+  ModalActionRowComponentResolvable,
+} from "discord.js";
+import {
+  APITextInputComponent,
+  APIActionRowComponent,
+} from "discord-api-types/v10";
 
-class Modal {
+class TextInput {
   modalId: string;
   modalTitle: string;
   /**
@@ -22,40 +34,48 @@ class Modal {
    * @param {Array} Required  ARRAY BOOLEAN
    */
   insertInputs(
-    customId: string[],
+    customid: string[],
     Label: string[],
-    Style: string[],
+    Style: TextInputStyle[],
     MinLength: number[],
     MaxLength: number[],
-    Required: boolean[]
+    Required: boolean[],
+    Placeholder: string[]
   ) {
-    interface TextInput {
-      type: number;
-      components: Array<object>;
-    }
-
     const modal: ModalOptions = {
       title: this.modalTitle,
       customId: this.modalId,
       components: [],
     };
-    for (let i = 0; i < customId.length; i++) {
-      const TextInput: TextInput = {
-        type: 1,
-        components: [],
+    interface iTextInput {
+      type: MessageComponentType;
+      components: TextInputComponentOptions[];
+    }
+    for (let i = 0; i < customid.length; i++) {
+      const textinput: iTextInput = {
+        type: "ACTION_ROW",
+        components: [
+          {
+            type: "TEXT_INPUT",
+            customId: customid[i],
+            label: Label[i],
+            maxLength: MaxLength[i],
+            minLength: MinLength[i],
+            placeholder: Placeholder[i],
+            required: Required[i],
+            style: Style[i],
+          },
+        ],
       };
-
-      TextInput.components.push({
-        type: 4,
-        custom_id: customId[i],
-        label: Label[i],
-        style: Style[i],
-        min_length: MinLength[i],
-        max_length: MaxLength[i],
-        required: Required[i],
-      });
+      modal.components.push(
+        textinput as MessageActionRow<
+          TextInputComponent,
+          ModalActionRowComponentResolvable,
+          APIActionRowComponent<APITextInputComponent>
+        >
+      );
     }
     return modal;
   }
 }
-export { Modal };
+export { TextInput };

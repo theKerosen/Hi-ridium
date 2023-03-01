@@ -1,10 +1,17 @@
 import { CanalSchem } from "../Schem/Schematica";
 import { Embed } from "../Constructors/Embed";
-export async function execute(interaction: any, client: any) {
+import { ModalSubmitInteraction, TextChannel } from "discord.js";
+import { Hiridium } from "../Utils/Client";
+export async function execute(
+  interaction: ModalSubmitInteraction,
+  client: Hiridium
+) {
   const findChannel = await CanalSchem.findOne({
     guildId: interaction.guildId,
   });
-  const suggestionChannel = client.channels.cache.get(findChannel?.sChannelId);
+  const suggestionChannel = client.channels.cache.get(
+    findChannel?.sChannelId ?? ""
+  );
   const Text1 = await interaction.fields.getTextInputValue("sGuildText1");
   const Text2 = await interaction.fields.getTextInputValue("sGuildText2");
 
@@ -14,9 +21,8 @@ export async function execute(interaction: any, client: any) {
     `BLURPLE`,
     `${new Date()}`
   );
-  const message = await suggestionChannel.send({
+  const message = await (suggestionChannel as TextChannel).send({
     embeds: [embed],
-    fetchReply: true,
   });
   message.react("👍");
   message.react("👎");

@@ -16,15 +16,15 @@ class Embed {
     Thumbnail?: string,
     Image?: string
   ) {
-    let Body = new MessageEmbed()
+    const Body = new MessageEmbed()
       .setAuthor({
         name: Author,
       })
       .setColor(Color)
       .setDescription(Description)
       .setFooter({ text: Footer })
-      .setThumbnail(Thumbnail!)
-      .setImage(Image!);
+      .setThumbnail(Thumbnail ?? "")
+      .setImage(Image ?? "");
     return Body;
   }
 }
