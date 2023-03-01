@@ -75,7 +75,7 @@ This button's Id is "Dangerous_Button", so I need to create a file with this exa
 **~file comically plops into existence~**
 
 They... grow so fast. Anyways, inside this new file we need some coding mess for it to work.
-The first you need to know is WHAT TYPE OF INTERACTION ARE YOU USING?
+The first thing you need to know is: WHAT TYPE OF INTERACTION ARE YOU USING?
 Don't worry, there are only three of those here.
 - ButtonInteraction;
 - ModalSubmitInteraction;
