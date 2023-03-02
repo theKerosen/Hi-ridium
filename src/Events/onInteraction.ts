@@ -14,7 +14,8 @@ export const onInteraction = async (
     } catch (error) {
       console.log(error);
       await interaction.reply({
-        content: "[❌] A não ser que os servidores do Discord tenham pegado fogo, isso é um erro.",
+        content:
+          "[❌] A não ser que os servidores do Discord tenham pegado fogo, isso é um erro.",
         ephemeral: true,
       });
     }

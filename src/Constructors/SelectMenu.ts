@@ -1,55 +1,52 @@
-class SelectMenu {
-  /**
-   * @param {Array} customId
-   * @param {Array} label
-   * @param {Array} value
-   * @param {Array} description
-   **/
+import {
+  APIActionRowComponent,
+  APIMessageActionRowComponent,
+} from "discord-api-types/v9";
+import {
+  MessageSelectMenuOptions,
+  MessageComponentType,
+  MessageActionRow,
+  MessageActionRowComponent,
+  MessageActionRowComponentResolvable,
+} from "discord.js";
+export class SelectMenu {
   builder(
-    customId: string,
-    type: number,
+    custom_id: string,
     placeholder: string,
-    options: [{ label: string[]; description: string[]; value: string[] }]
+    minvalues: number,
+    maxvalues: number,
+    label: string[],
+    description: string[],
+    value: string[]
   ) {
-    interface Options {
-      label: string;
-      description: string;
-      value: string;
+    interface iSelectMenu {
+      type: MessageComponentType;
+      components: MessageSelectMenuOptions[];
     }
-    interface ArrayMenu {
-      type: number;
+    const Menu: iSelectMenu = {
+      type: "ACTION_ROW",
       components: [
         {
-          type: number;
-          custom_id: string;
-          placeholder: string;
-          options: Options[];
-        }
-      ];
-    }
-    const SelectMenu: Array<ArrayMenu> = [];
-    for (let i = 0; i < customId.length; i++) {
-      const Menu: ArrayMenu = {
-        type: 1,
-        components: [
-          {
-            type: type,
-            custom_id: customId,
-            placeholder: placeholder,
-            options: [],
-          },
-        ],
-      };
-      SelectMenu.push(Menu);
-    }
-    for (let i = 0; i < options[0].label.length; i++) {
-      SelectMenu[0].components[0].options.push({
-        label: options[0].label[i],
-        description: options[0].description[i],
-        value: options[0].value[i],
+          type: "SELECT_MENU",
+          customId: custom_id,
+          placeholder: placeholder,
+          minValues: minvalues,
+          maxValues: maxvalues,
+          options: [],
+        },
+      ],
+    };
+    for (let i = 0; i < label.length; i++) {
+      Menu.components[0].options?.push({
+        label: label[i],
+        value: value[i],
+        description: description[i],
       });
     }
-    return SelectMenu[0];
+    return Menu as MessageActionRow<
+      MessageActionRowComponent,
+      MessageActionRowComponentResolvable,
+      APIActionRowComponent<APIMessageActionRowComponent>
+    >;
   }
 }
-export { SelectMenu };

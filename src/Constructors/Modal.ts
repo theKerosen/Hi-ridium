@@ -12,27 +12,13 @@ import {
   APIActionRowComponent,
 } from "discord-api-types/v10";
 
-class TextInput {
+export class TextInput {
   modalId: string;
   modalTitle: string;
-  /**
-   * @param {String} modalId
-   * @param {String} modalTitle
-   */
   constructor(modalId: string, modalTitle: string) {
     this.modalId = modalId;
     this.modalTitle = modalTitle;
   }
-  /**
-   * @param {String} modalId STRING
-   * @param {String} modalTitle STRING
-   * @param {Array} customId ARRAY STRING
-   * @param {Array} Label ARRAY STRING
-   * @param {Array} Style PARAGRAPH, SHORT, STRING
-   * @param {Array} MinLength ARRAY NUMBER
-   * @param {Array} MaxLength ARRAY NUMBER
-   * @param {Array} Required  ARRAY BOOLEAN
-   */
   insertInputs(
     customid: string[],
     Label: string[],
@@ -78,4 +64,3 @@ class TextInput {
     return modal;
   }
 }
-export { TextInput };

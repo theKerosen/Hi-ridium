@@ -121,7 +121,7 @@ Embed
 // NOTE: After you use ".Text()" the embed will automatically turn into
 // an Embed Object, essentially having the same functionality as vanilla Discord.js.
 //
-const Nice_Embed = new Embed().Text(
+const embed = new Embed().Text(
   "Author",
   "Description",
   "Color",
@@ -140,7 +140,7 @@ Modal
 // Modals are a bit quirky,
 // You can add new text fields by using Arrays.
 //
-const Good_Modal = new Modal("Modal Id", "Modal Title").insertInputs(
+const modal = new Modal("Modal Id", "Modal Title").insertInputs(
   ["custom IDs"],
   ["Labels"],
   ["Styles"],
@@ -150,7 +150,7 @@ const Good_Modal = new Modal("Modal Id", "Modal Title").insertInputs(
 );
 
 //Too hard to understand? here is an Example:
-const Good_Modal = new Modal("hello1", "Hello!").insertInputs(
+const modal = new Modal("hello1", "Hello!").insertInputs(
   ["hellotext1", "hellotext2"],
   ["What is your name?", "Tell us a bit about yourself."],
   ["SHORT", "PARAGRAPH"],
@@ -179,7 +179,7 @@ Select Menu
 //
 // This one is very helpful since select menus are boring.
 //
-const Select_Menu = new SelectMenu().builder("Id", 3 /*Type*/, "Placeholder", [
+const select_menu = new SelectMenu().builder("Id", 3 /*Type*/, "Placeholder", [
   {
     label: ["Cool label 1", "Cool label 2"],
     description: [
@@ -205,4 +205,3 @@ Please make sure to update tests as appropriate.
 [MIT](https://choosealicense.com/licenses/mit/)
 
 *also.. don't eat folders.*
-````

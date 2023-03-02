@@ -4,20 +4,15 @@
     "@discordjs/form-data": "^3.0.1",
     "@discordjs/rest": "^1.5.0",
     "@types/async": "^3.2.16",
-    "@types/uuid": "^9.0.0",
-    "async": "^3.2.4",
     "discord-api-types": "0.33.5",
     "discord.js": "13.11.0",
     "dotenv": "^16.0.3",
     "mongoose": "^6.8.3",
-    "ts-node": "^10.9.1",
-    "uuid": "^9.0.0"
+    "ts-node": "^10.9.1"
   },
   "scripts": {
     "dev": "ts-node dist/Utils/index.js",
-    "build": "tsc -p tsconfig.json",
-    "lint": "yarn eslint src",
-    "start": "yarn build | yarn dev"
+    "build": "tsc -p tsconfig.json"
   },
   "devDependencies": {
     "@types/node": "^18.11.18",

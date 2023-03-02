@@ -1,13 +1,5 @@
 import { ColorResolvable, MessageEmbed } from "discord.js";
-class Embed {
-  /**
-   * @param {String} Author The title/Author text
-   * @param {String} Description The description text
-   * @param {ColorResolvable} Color The color
-   * @param {String} Footer The footer text
-   * @param {String} Thumbnail The thumbnail URL
-   * @param {String} Image The image URL
-   */
+export class Embed {
   builder(
     Author: string,
     Description: string,
@@ -28,4 +20,3 @@ class Embed {
     return Body;
   }
 }
-export { Embed };
