@@ -3,6 +3,23 @@
 
 Hi-ridium is a Project focused on my self-learning journey on how to make global, easily adaptable, highly configurable and fast Discord Bots.
 
+## Da environment variables!
+
+First of all, you need a good .env to start with.
+
+```env
+#The client's ID
+ID=
+
+#The Token
+TOKEN=
+
+#Mongoose's URI
+MONGO_URI=
+```
+
+Just create the .env file and fill it up, then you'll be good to go.
+
 ## How to create Commands?
 
 Creating Commands is pretty basic, just go to the "Commands" folder (or the folder that you're curently using for the commands) and create a new file with a very nice name (must be nice),
@@ -20,11 +37,13 @@ export = {
     name: "ping",
     description: "this command shows the client's current ping",
     type: "ACTION_ROW",
-    options: []
-  }
-} as Command
+    options: [],
+  },
+} as Command;
 ```
-You might be asking yourself "huh, what the f* is the "options" for? and where do I start adding things to my commands?" well, allow me to show to you:
+
+You might be asking yourself "huh, what the f\* is the "options" for? and where do I start adding things to my commands?" well, allow me to show to you:
+
 ```typescript
 export = {
   data: {
@@ -42,7 +61,7 @@ export = {
         description: "...your client",
         type: "SUBCOMMAND"
       }
-    ] 
+    ]
     //inside of this array you can add stuff like Subcommands, User selection, Channel selection, etc.
     //Everything needs to have these three components: "name", "description" and "type".
   }
@@ -51,35 +70,45 @@ export = {
   }
 } as Command
 ```
+
 Everything (except the name and description, of course) should be fully auto-completable, so you won't have too much trouble with remembering stuff.
 
 ## How to respond to Message Components?
 
 So, you've just created a very cool button, maybe a nice modal or a good-looking select menu and is wondering "how to maek interection spit fax?" don't worry sonny, let me help you with that!
-First, in this project there are 3 *(three, not two nor one)* folders with distinct names:
+First, in this project there are 3 _(three, not two nor one)_ folders with distinct names:
+
 - IModals;
 - ISelectMenus;
 - IButtons.
 
-Pick your flavour of folder *(if you're creating a Modal, use the IModal and blah blah blah)* and create a new file inside there.
+Pick your flavour of folder _(if you're creating a Modal, use the IModal and blah blah blah)_ and create a new file inside there.
 
 Notice that the name of this file needs to be the same as the Custom ID you've defined for your Modal/Button/SelectMenu.
-Let's pretend that I just created a very nice and shiny red button *(everybody likes to press those, right?)*
-```typescript
-import { Button } from "path/to/button"
+Let's pretend that I just created a very nice and shiny red button _(everybody likes to press those, right?)_
 
-const Cool_Button = new Button().builder(["Dangerous_Button"], ["Press it"], ["DANGER"]);
+```typescript
+import { Button } from "path/to/button";
+
+const Cool_Button = new Button().builder(
+  ["Dangerous_Button"],
+  ["Press it"],
+  ["DANGER"]
+);
 ```
+
 This button's Id is "Dangerous_Button", so I need to create a file with this exact name in order for it to work as intended.
 
 **~file comically plops into existence~**
 
 They... grow so fast. Anyways, inside this new file we need some coding mess for it to work.
-The first you need to know is WHAT TYPE OF INTERACTION ARE YOU USING?
+The first thing you need to know is: WHAT TYPE OF INTERACTION ARE YOU USING?
 Don't worry, there are only three of those here.
+
 - ButtonInteraction;
 - ModalSubmitInteraction;
 - SelectMenuInteraction.
+
 Yeah, pretty easy, right? Right...?
 
 Anyway, just remember those, they are very important.
@@ -95,8 +124,8 @@ export async function execute(
   //your code goes here!
 }
 ```
-And done, you can reply back to a button or whatever interaction now!
 
+And done, you can reply back to a button or whatever interaction now!
 
 ## Constructors/Imports
 
@@ -204,4 +233,4 @@ Please make sure to update tests as appropriate.
 
 [MIT](https://choosealicense.com/licenses/mit/)
 
-*also.. don't eat folders.*
+_also.. don't eat folders._
