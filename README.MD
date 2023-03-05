@@ -208,16 +208,15 @@ Select Menu
 //
 // This one is very helpful since select menus are boring.
 //
-const select_menu = new SelectMenu().builder("Id", 3 /*Type*/, "Placeholder", [
-  {
-    label: ["Cool label 1", "Cool label 2"],
-    description: [
-      "Cool description for Cool Label 1",
-      "Cooler description for Cool label 2",
-    ],
-    value: ["value_for_label1", "value_for_label2"],
-  },
-]);
+const select_menu = new SelectMenu().builder(
+  "Id",
+  "Placeholder",
+  1 /* Minimum value*/,
+  1 /*Maximum value*/,
+  ["Cool label 1", "Cool label 2"],
+  ["Cool description for Cool Label 1", "Cooler description for Cool label 2"],
+  ["value_for_label1", "value_for_label2"]
+);
 
 interaction.reply({ components: [Select_Menu] });
 ```
