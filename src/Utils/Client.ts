@@ -6,6 +6,7 @@ import { Command } from "./command";
 
 class Hiridium extends Client {
   commands: Collection<string, Command> = new Collection();
+  misc: Collection<unknown, unknown> = new Collection();
   constructor() {
     super({ intents: 3276799 });
   }

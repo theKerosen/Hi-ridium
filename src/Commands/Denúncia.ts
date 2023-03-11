@@ -18,11 +18,12 @@ export = {
   },
   async execute(client, interaction) {
     const reportedUser = interaction.options.getUser("usuário");
+    client.misc.set(`report_${interaction.user.id}`, reportedUser?.id);
     const menu = new SelectMenu().builder(
       "report",
       "► Selecione o tipo da denúncia...",
       1,
-      12,
+      1,
       [
         "Provocações indesejadas",
         "Avatar indecente",
@@ -70,7 +71,7 @@ export = {
       "<⚠️> | Denúncia",
       `O usuário denunciado será "\`${reportedUser?.username}\`"\n por favor, selecione o motivo abaixo.`,
       `YELLOW`,
-      `${reportedUser?.id}`
+      `${new Date()}`
     );
     await ReportSchem.findOneAndUpdate(
       {

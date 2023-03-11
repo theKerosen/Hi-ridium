@@ -12,12 +12,11 @@ export async function execute(
   const suggestionChannel = client.channels.cache.get(
     findChannel?.sChannelId ?? ""
   );
-  const Text1 = await interaction.fields.getTextInputValue("sGuildText1");
-  const Text2 = await interaction.fields.getTextInputValue("sGuildText2");
-
   const embed = new Embed().builder(
-    `${interaction.user.username} > "${Text1}"`,
-    `\`\`\`${Text2}\`\`\``,
+    `${interaction.user.username} > "${interaction.fields.getTextInputValue(
+      "SuggestionInput1"
+    )}"`,
+    `\`\`\`${interaction.fields.getTextInputValue("SuggestionInput2")}\`\`\``,
     `BLURPLE`,
     `${new Date()}`
   );

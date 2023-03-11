@@ -14,7 +14,7 @@ export async function execute(
     guildId: interaction.guildId,
   });
   const reportedUser = client.users.cache.get(
-    interaction?.message?.embeds[0]?.footer?.text ?? ""
+    client.misc.get(`report_${interaction.user.id}`) as string
   );
   const embed = new Embed().builder(
     " ⚠️| Denúncia",

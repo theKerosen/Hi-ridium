@@ -39,19 +39,6 @@ export = {
               },
             ],
           },
-          {
-            name: "opiniões",
-            description: "► [ADMIN] Selecione/Altere o canal de opiniões",
-            type: "SUB_COMMAND",
-            options: [
-              {
-                name: "canal",
-                description: "► Selecione o canal de opiniões",
-                type: "CHANNEL",
-                required: true,
-              },
-            ],
-          },
         ],
       },
     ],

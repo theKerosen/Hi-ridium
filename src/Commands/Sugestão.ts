@@ -8,7 +8,7 @@ export = {
     options: [
       {
         name: "servidor",
-        description: "► Enviar uma sugestão...",
+        description: "...para o servidor",
         type: "SUB_COMMAND",
       },
     ],

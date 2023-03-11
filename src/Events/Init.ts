@@ -6,4 +6,8 @@ export const Init = async (client: Hiridium) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   client.application?.commands.set(client.commands.map((v: any) => v.data));
   client.user?.setStatus("idle");
+  client.user?.setActivity({
+    name: "Follow my GitHub!",
+    type: "PLAYING",
+  });
 };
