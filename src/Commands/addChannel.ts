@@ -102,30 +102,5 @@ export = {
         `\x1b[35m[Hi-Ridium] > \x1b[36mCanal de denúncias alterado para "${Canal?.name}" em "${Guild?.name}"`
       );
     }
-    if (interaction.options.getSubcommand() === "opiniões") {
-      const Canal = interaction.options.getChannel("canal");
-
-      if (Canal?.type !== "GUILD_TEXT")
-        return interaction.reply({
-          content: "[❌] Esse canal não é de texto.",
-          ephemeral: true,
-        });
-      await CanalSchem.findOneAndUpdate(
-        {
-          guildId: interaction.guildId,
-        },
-        {
-          oChannelId: Canal?.id,
-          oChannelName: Canal?.name,
-        }
-      );
-      interaction.reply({
-        content: `[✔️] Ação executada com sucesso. (<#${Canal?.id}>)`,
-        ephemeral: true,
-      });
-      console.log(
-        `\x1b[35m[Hi-Ridium] > \x1b[36mCanal de opiniões alterado para "${Canal?.name}" em "${Guild?.name}"`
-      );
-    }
   },
 } as Command;
