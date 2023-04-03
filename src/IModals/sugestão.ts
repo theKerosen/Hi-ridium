@@ -1,6 +1,6 @@
 import { CanalSchem } from "../Schem/Schematica";
-import { Embed } from "../Constructors/Embed";
-import { ModalSubmitInteraction, TextChannel } from "discord.js";
+import { BEmbed } from "../Constructors/Embed";
+import { codeBlock, ModalSubmitInteraction, TextChannel } from "discord.js";
 import { Hiridium } from "../Utils/Client";
 export async function execute(
   interaction: ModalSubmitInteraction,
@@ -12,14 +12,16 @@ export async function execute(
   const suggestionChannel = client.channels.cache.get(
     findChannel?.sChannelId ?? ""
   );
-  const embed = new Embed().builder(
-    `${interaction.user.username} > "${interaction.fields.getTextInputValue(
-      "SuggestionInput1"
-    )}"`,
-    `\`\`\`${interaction.fields.getTextInputValue("SuggestionInput2")}\`\`\``,
-    `BLURPLE`,
-    `${new Date()}`
+  const embed = new BEmbed().setADC(
+    {
+      name: `${
+        interaction.user.username
+      } > ${interaction.fields.getTextInputValue("SuggestionInput1")}`,
+    },
+    `${codeBlock(interaction.fields.getTextInputValue("SuggestionInput2"))}`,
+    "Blue"
   );
+
   const message = await (suggestionChannel as TextChannel).send({
     embeds: [embed],
   });

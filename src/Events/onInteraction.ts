@@ -5,12 +5,12 @@ export const onInteraction = async (
   interaction: Interaction,
   client: Hiridium
 ) => {
-  if (interaction.isCommand()) {
+  if (interaction.isChatInputCommand()) {
     const command = client.commands.get(interaction.commandName);
     if (interaction.user.bot == true) return;
     if (!command) return;
     try {
-      command.execute(client, interaction);
+      command.execute(interaction, client);
     } catch (error) {
       console.log(error);
       await interaction.reply({
@@ -26,8 +26,14 @@ export const onInteraction = async (
       client
     );
   }
-  if (interaction.isSelectMenu()) {
-    (await import(`../ISelectMenus/${interaction?.customId}`)).execute(
+  if (interaction.isStringSelectMenu()) {
+    (await import(`../ISelectMenus/StringSelectMenu/${interaction?.customId}`)).execute(
+      interaction,
+      client
+    );
+  }
+  if(interaction.isChannelSelectMenu()) {
+    (await import(`../ISelectMenus/ChannelSelectMenu/${interaction?.customId}`)).execute(
       interaction,
       client
     );

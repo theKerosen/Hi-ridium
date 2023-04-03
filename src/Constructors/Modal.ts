@@ -1,66 +1,121 @@
 import {
-  ModalOptions,
-  MessageComponentType,
+  ModalBuilder,
+  TextInputBuilder,
+  APIModalInteractionResponseCallbackData,
+  ModalComponentData,
   TextInputStyle,
-  TextInputComponentOptions,
-  MessageActionRow,
-  TextInputComponent,
-  ModalActionRowComponentResolvable,
-} from "discord.js";
-import {
-  APITextInputComponent,
+  ActionRowBuilder,
+  ModalActionRowComponentBuilder,
   APIActionRowComponent,
-} from "discord-api-types/v10";
-
-export class TextInput {
-  modalId: string;
-  modalTitle: string;
-  constructor(modalId: string, modalTitle: string) {
-    this.modalId = modalId;
-    this.modalTitle = modalTitle;
-  }
-  insertInputs(
-    customid: string[],
-    Label: string[],
-    Style: TextInputStyle[],
-    MinLength: number[],
-    MaxLength: number[],
-    Required: boolean[],
-    Placeholder: string[]
+  APIActionRowComponentTypes,
+  ComponentType,
+  APITextInputComponent,
+  Equatable,
+  JSONEncodable,
+  ActionRowComponentData,
+  ActionRowData,
+  APIMessageActionRowComponent,
+  APIModalActionRowComponent,
+} from "discord.js";
+export class TextInputBuilding
+  extends TextInputBuilder
+  implements
+    Equatable<APITextInputComponent | JSONEncodable<APITextInputComponent>>
+{
+  constructor(
+    data?: APITextInputComponent & {
+      type?: ComponentType.TextInput;
+    }
   ) {
-    const modal: ModalOptions = {
-      title: this.modalTitle,
-      customId: this.modalId,
-      components: [],
-    };
-    interface iTextInput {
-      type: MessageComponentType;
-      components: TextInputComponentOptions[];
-    }
-    for (let i = 0; i < customid.length; i++) {
-      const textinput: iTextInput = {
-        type: "ACTION_ROW",
-        components: [
-          {
-            type: "TEXT_INPUT",
-            customId: customid[i],
-            label: Label[i],
-            maxLength: MaxLength[i],
-            minLength: MinLength[i],
-            placeholder: Placeholder[i],
-            required: Required[i],
-            style: Style[i],
-          },
-        ],
-      };
-      modal.components.push(
-        textinput as MessageActionRow<
-          TextInputComponent,
-          ModalActionRowComponentResolvable,
-          APIActionRowComponent<APITextInputComponent>
-        >
-      );
-    }
-    return modal;
+    super(data);
+  }
+  setInput(
+    custom_id: string,
+    label: string,
+    style: TextInputStyle,
+    placeholder?: string,
+    min_length?: number,
+    max_length?: number,
+    required?: boolean
+  ) {
+    return super
+      .setCustomId(custom_id)
+      .setLabel(label)
+      .setStyle(style)
+      .setMinLength(min_length ?? 1)
+      .setMaxLength(max_length ?? 250)
+      .setPlaceholder(placeholder ?? "...")
+      .setRequired(required);
   }
 }
+export class ActionAdd extends ActionRowBuilder<TextInputBuilder> {
+  constructor(
+    data?: Partial<
+      | ActionRowData<
+          ActionRowComponentData | JSONEncodable<APIActionRowComponentTypes>
+        >
+      | APIActionRowComponent<
+          APIMessageActionRowComponent | APIModalActionRowComponent
+        >
+    >
+  ) {
+    super(data);
+  }
+}
+export class ModalBuilding extends ModalBuilder {
+  constructor(
+    data?:
+      | Partial<ModalComponentData>
+      | Partial<APIModalInteractionResponseCallbackData>
+  ) {
+    super(data);
+  }
+  /**
+   * @param {String} custom_id Sets the customID of the Text Input
+   * @param {String} label Sets the label of the Text Input
+   * @param {TextInputStyle} style This sets the Style of the Text Input (default: TextInputStyle.Short)
+   * @param {String} placeholder Sets the "placeholder" message.
+   * @param {Number} min_length Sets the min character length of the Text Input (default: 1)
+   * @param {Number} max_length Sets the max character length of the Text Input (default: 250)
+   * @param {Boolean} required Makes the Text Input required or not (default: false)
+   * @returns a nice Discord.js-Compatible Text Input object.
+   */
+  addText(
+    custom_id: string,
+    label: string,
+    style: TextInputStyle,
+    placeholder?: string,
+    min_length?: number,
+    max_length?: number,
+    required?: boolean
+  ) {
+    return super.addComponents(
+      new ActionAdd().addComponents(
+        new TextInputBuilding().setInput(
+          custom_id,
+          label,
+          style,
+          placeholder,
+          min_length,
+          max_length,
+          required
+        )
+      )
+    );
+  }
+}
+export class BModal extends ActionRowBuilder<ModalActionRowComponentBuilder> {
+  constructor(
+    data?: Partial<APIActionRowComponent<APIActionRowComponentTypes>>
+  ) {
+    super(data);
+  }
+  createModal(custom_id: string, title: string) {
+    return new ModalBuilding().setCustomId(custom_id).setTitle(title);
+  }
+}
+//
+// TODO:
+//  find a way to make the code cleaner
+//  (right now it looks hideous)
+//

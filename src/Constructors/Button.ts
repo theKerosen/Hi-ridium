@@ -1,19 +1,47 @@
 import {
-  MessageActionRow,
-  MessageButton,
-  MessageButtonStyleResolvable,
+  ButtonBuilder,
+  ActionRowBuilder,
+  APIButtonComponent,
+  ButtonComponentData,
+  ButtonStyle,
 } from "discord.js";
-export class Button {
-  builder(id: string[], name: string[], style: MessageButtonStyleResolvable[]) {
-      const button = new MessageActionRow();
-      for (let i = 0; i < name.length; i++) {
-        button.addComponents(
-          new MessageButton()
-            .setLabel(name[i])
-            .setCustomId(id[i])
-            .setStyle(style[i])
-        );
-      }
-      return button;
+export class ButtonBuilding extends ButtonBuilder {
+  constructor(
+    data?: Partial<ButtonComponentData> | Partial<APIButtonComponent>
+  ) {
+    super(data);
+  }
+  setButton(
+    customId: string,
+    Label: string,
+    Style?: ButtonStyle,
+    Disabled?: boolean | false
+  ) {
+    super
+      .setCustomId(customId)
+      .setDisabled(Disabled)
+      .setLabel(Label)
+      .setStyle(Style ?? ButtonStyle.Primary);
+  }
+}
+export class BButton extends ActionRowBuilder<ButtonBuilder> {
+  constructor(
+    data?: Partial<ButtonComponentData> | Partial<APIButtonComponent>
+  ) {
+    super(data);
+  }
+  addButton(
+    customId: string,
+    Label: string,
+    Style?: ButtonStyle,
+    Disabled?: boolean
+  ) {
+    return super.addComponents(
+      new ButtonBuilding()
+        .setCustomId(customId)
+        .setDisabled(Disabled ?? false)
+        .setLabel(Label)
+        .setStyle(Style ?? ButtonStyle.Primary)
+    );
   }
 }

@@ -1,25 +1,21 @@
-import { Command } from "../interfaces/command";
-import {
-  ButtonStyle,
-  PermissionFlagsBits,
-  SlashCommandBuilder,
-} from "discord.js";
-import { BEmbed } from "../Constructors/Embed";
-import { CanalSchem } from "../Schem/Schematica";
-import { BButton } from "../Constructors/Button";
-
-export = {
-  data: new SlashCommandBuilder()
-    .setName("canal")
-    .setDescription("► [ADMIN] Comando para configuração de canais"),
-  async execute(interaction, client) {
-    const Guild = client?.guilds.cache.get(interaction.guildId ?? "");
-    const User = Guild?.members.cache.get(interaction.user.id);
-    if (!User?.permissions.has(PermissionFlagsBits.Administrator))
-      return interaction.reply({
-        content: "[❌] Sem permissão.",
-        ephemeral: true,
-      });
+import { ButtonStyle, ChannelSelectMenuInteraction } from "discord.js";
+import { Hiridium } from "../../Utils/Client";
+import { CanalSchem } from "../../Schem/Schematica";
+import { BButton } from "../../Constructors/Button";
+import { BEmbed } from "../../Constructors/Embed";
+export async function execute(
+  interaction: ChannelSelectMenuInteraction,
+  client: Hiridium
+) {
+    const Canal = client.channels.cache.get(interaction.values[0]);
+    await CanalSchem.findOneAndUpdate(
+      { guildId: interaction.guildId },
+      {
+        sChannelId: Canal?.id,
+        date: Date.now(),
+      },
+      { upsert: true, new: true }
+    );
     const search = await CanalSchem.findOne({ guildId: interaction.guildId });
     const dChannel =
       interaction.guild?.channels.cache.get(search?.dChannelId as string) ||
@@ -52,6 +48,8 @@ export = {
         ButtonStyle.Success
       );
 
-    interaction.reply({ embeds: [embed], components: [buttons], ephemeral: true });
-  },
-} as Command;
+      interaction.reply({ embeds: [embed], components: [buttons], ephemeral: true });
+    console.log(
+      `\x1b[35m[Hi-Ridium] > \x1b[36mCanal de sugestões alterado para "${Canal?.id}" em "${interaction.guild?.name}"`
+    );
+}

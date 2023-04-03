@@ -22,56 +22,21 @@ Just create the .env file and fill it up, then you'll be good to go.
 
 ## How to create Commands?
 
-Creating Commands is pretty basic, just go to the "Commands" folder (or the folder that you're curently using for the commands) and create a new file with a very nice name (must be nice),
+Creating Commands is very simple, just go to the "Commands" folder (or the folder that you're curently using for the commands) and create a new file with a very nice name (must be nice),
 after that, you'll need to import the Command interface from "command.ts" like so:
 
 ```typescript
 import { Command } from "path/to/command.ts";
 ```
 
-after that, you'll need to export some values in order to create a command:
+after that, you'll need to use the SlashCommandBuilder in order to create commands:
 
 ```typescript
 export = {
-  data: {
-    name: "ping",
-    description: "this command shows the client's current ping",
-    type: "ACTION_ROW",
-    options: [],
-  },
+  data: new SlashCommandBuilder().setName().setDescription(),
+   async execute(interaction, client) {}
 } as Command;
 ```
-
-You might be asking yourself "huh, what the f\* is the "options" for? and where do I start adding things to my commands?" well, allow me to show to you:
-
-```typescript
-export = {
-  data: {
-    name: "ping",
-    description: "this command shows the ping of...",
-    type: "ACTION_ROW",
-    options: [
-      {
-        name: "client",
-        description: "...the bot",
-        type: "SUBCOMMAND"
-      },
-      {
-        name: "user",
-        description: "...your client",
-        type: "SUBCOMMAND"
-      }
-    ]
-    //inside of this array you can add stuff like Subcommands, User selection, Channel selection, etc.
-    //Everything needs to have these three components: "name", "description" and "type".
-  }
-  execute(interaction, client) {
-    //your beautiful (totally not CTRL C'd) code goes here!!
-  }
-} as Command
-```
-
-Everything (except the name and description, of course) should be fully auto-completable, so you won't have too much trouble with remembering stuff.
 
 ## How to respond to Message Components?
 
@@ -88,138 +53,50 @@ Notice that the name of this file needs to be the same as the Custom ID you've d
 Let's pretend that I just created a very nice and shiny red button _(everybody likes to press those, right?)_
 
 ```typescript
-import { Button } from "path/to/button";
+import { BButton } from "path/to/button";
 
-const Cool_Button = new Button().builder(
-  ["Dangerous_Button"],
-  ["Press it"],
-  ["DANGER"]
-);
+const Cool_Button = new BButton()
+  .addButton(
+    "dangerous_button",
+    "Dangerous Button!!",
+    ButtonStyle.Danger
+); //no need to use my constructors, just use Discord's instead.
 ```
 
-This button's Id is "Dangerous_Button", so I need to create a file with this exact name in order for it to work as intended.
+This button's custom id is "dangerous_button", so I need to create a file with this exact name in order for it to work as intended.
 
-**~file comically plops into existence~**
-
-They... grow so fast. Anyways, inside this new file we need some coding mess for it to work.
+Inside this new file we need some more code in order for it to work.
 The first thing you need to know is: WHAT TYPE OF INTERACTION ARE YOU USING?
-Don't worry, there are only three of those here.
 
-- ButtonInteraction;
-- ModalSubmitInteraction;
-- SelectMenuInteraction.
+ - ModalSubmitInteraction, __(for modals)__
 
-Yeah, pretty easy, right? Right...?
+ - ButtonInteraction, __(for buttons)__
 
-Anyway, just remember those, they are very important.
+ - StringSelectMenuInteraction, __(for Multi Select Menus)__
+
+ - AnySelectMenuInteraction, __(for any Select Menu)__
+
+ - RoleSelectMenuInteraction, __(for Role Select Menus)__
+
+ - UserSelectMenuInteraction, __(for User Select Menus)__
+
+ - ChannelSelectMenuInteraction, __(for Channel Select Menus)__
+
+Remember those, they are very important.
 In my case, I am using a Button, so I need to use the ButtonInteraction.
 
 ```typescript
-import { ModalSubmitInteraction } from "discord.js";
+import { ButtonInteraction } from "discord.js";
 import { Hiridium } from "../Utils/Client";
 export async function execute(
-  interaction: ModalSubmitInteraction,
+  interaction: ButtonInteraction,
   client: Hiridium
 ) {
-  //your code goes here!
+  interaction.reply({ content: "you pressed a button." })
 }
 ```
 
 And done, you can reply back to a button or whatever interaction now!
-
-## Constructors/Imports
-
-I made some useful constructors to allow for improved readability. If you wanna use them, just download the "Constructors" folder (inside src), drag it to your project folder and import the constructors like this:
-
-```typescript
-import { Embed } from "path/to/Constructors/Embed";
-import { Modal } from "path/to/Constructors/Modal";
-import { SelectMenu } from "path/to/Constructors/SelectMenu";
-import { Button } from "path/to/Constructors/Button";
-```
-
-## Constructors/Usage
-
-These constructors are just a _wrapper_, so if you understand quite a bit about how Embeds, Modals, Select Menus and Buttons work, you could easily modify them to your liking.
-_the Developer Wiki can and WILL help you here._
-
-Embed
-
-```typescript
-//
-// NOTE: After you use ".Text()" the embed will automatically turn into
-// an Embed Object, essentially having the same functionality as vanilla Discord.js.
-//
-const embed = new Embed().Text(
-  "Author",
-  "Description",
-  "Color",
-  "Footer",
-  "Thumbnail URL",
-  "Image URL"
-);
-
-interaction.reply({ embeds: [Nice_Embed] });
-```
-
-Modal
-
-```typescript
-//
-// Modals are a bit quirky,
-// You can add new text fields by using Arrays.
-//
-const modal = new Modal("Modal Id", "Modal Title").insertInputs(
-  ["custom IDs"],
-  ["Labels"],
-  ["Styles"],
-  ["Minimum Length"],
-  ["Maximum Length"],
-  [true /*Required?*/]
-);
-
-//Too hard to understand? here is an Example:
-const modal = new Modal("hello1", "Hello!").insertInputs(
-  ["hellotext1", "hellotext2"],
-  ["What is your name?", "Tell us a bit about yourself."],
-  ["SHORT", "PARAGRAPH"],
-  [0, 0],
-  [32, 125],
-  [true, false]
-);
-interaction.showModal(Good_Modal);
-```
-
-Buttons
-
-```typescript
-//
-// Same stuff as the Modals.
-//
-
-const Cool_Button = new Button().builder(["Id"], ["Label"], ["Style"]);
-
-interaction.reply({ components: [Cool_Button] });
-```
-
-Select Menu
-
-```typescript
-//
-// This one is very helpful since select menus are boring.
-//
-const select_menu = new SelectMenu().builder(
-  "Id",
-  "Placeholder",
-  1 /* Minimum value*/,
-  1 /*Maximum value*/,
-  ["Cool label 1", "Cool label 2"],
-  ["Cool description for Cool Label 1", "Cooler description for Cool label 2"],
-  ["value_for_label1", "value_for_label2"]
-);
-
-interaction.reply({ components: [Select_Menu] });
-```
 
 ## Contributing
 
@@ -231,5 +108,3 @@ Please make sure to update tests as appropriate.
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-_also.. don't eat folders._

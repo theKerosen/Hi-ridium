@@ -1,16 +1,12 @@
 import { Schema, model } from "mongoose";
 
-
 // ##########################################################
 
 const Canal = new Schema({
   guildId: String,
   sChannelId: String,
-  sChannelName: String,
   dChannelId: String,
-  dChannelName: String,
   oChannelId: String,
-  oChannelName: String,
 });
 const CanalSchem = model("Channel", Canal);
 
@@ -44,8 +40,20 @@ const Rep = new Schema({
     default: 0,
   },
 });
-const RepSchem = model("Rep", Rep)
+const RepSchem = model("Rep", Rep);
 
 // ##########################################################
 
-export { CanalSchem, RepSchem, ReportSchem };
+const WPScanner = new Schema({
+  Name: { type: String, default: "CSGO-Blog-Scanner" },
+  LastId: {
+    type: Number,
+    default: 0,
+  },
+  LastPostId: {
+    type: Number,
+    default: 0,
+  },
+});
+const WPSDB = model("WordPressScan", WPScanner);
+export { CanalSchem, RepSchem, ReportSchem, WPSDB };

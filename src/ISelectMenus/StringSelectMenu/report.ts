@@ -1,10 +1,10 @@
-import { SelectMenuInteraction, TextChannel } from "discord.js";
-import { Embed } from "../Constructors/Embed";
-import { ReportSchem } from "../Schem/Schematica";
-import { CanalSchem } from "../Schem/Schematica";
-import { Hiridium } from "../Utils/Client";
+import { StringSelectMenuInteraction, TextChannel } from "discord.js";
+import { BEmbed } from "../../Constructors/Embed";
+import { ReportSchem } from "../../Schem/Schematica";
+import { CanalSchem } from "../../Schem/Schematica";
+import { Hiridium } from "../../Utils/Client";
 export async function execute(
-  interaction: SelectMenuInteraction,
+  interaction: StringSelectMenuInteraction,
   client: Hiridium
 ) {
   interaction.update({
@@ -16,15 +16,14 @@ export async function execute(
   const reportedUser = client.users.cache.get(
     client.misc.get(`report_${interaction.user.id}`) as string
   );
-  const embed = new Embed().builder(
-    " ⚠️| Denúncia",
+  const embed = new BEmbed().setADC(
+    { name: "⚠️| Denúncia" },
     `${reportedUser} foi reportado por <@${interaction.user.id}>\n> Motivo: \`${interaction.values[0]}\``,
-    `YELLOW`,
-    `${new Date()}`
+    "Gold"
   );
-  const reportChannel = await client.channels.cache.get(
+  const reportChannel = (await client.channels.cache.get(
     findChannel?.dChannelId ?? ""
-  );
+  )) as TextChannel;
   await ReportSchem.findOneAndUpdate(
     {},
     {
@@ -48,5 +47,5 @@ export async function execute(
     },
     { upsert: true, new: true }
   );
-  (reportChannel as TextChannel).send({ embeds: [embed] });
+  if (reportChannel) reportChannel.send({ embeds: [embed] });
 }
