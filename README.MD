@@ -1,9 +1,9 @@
 <h1 align="left">Hi-ridium Project
-  <img src="https://cdn.discordapp.com/attachments/943547363031670785/1076471508861472788/Sem_Titulo-7.png" height="25" alt="stats graph"/></h1>
+  <img src="https://cdn.discordapp.com/attachments/943547363031670785/1076471508861472788/Sem_Titulo-7.png" height="25"/></h1>
 
 Hi-ridium is a Project focused on my self-learning journey on how to make global, easily adaptable, highly configurable and fast Discord Bots.
 
-## Da environment variables!
+## The environment variables!
 
 First of all, you need a good .env to start with.
 
