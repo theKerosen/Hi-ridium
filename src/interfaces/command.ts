@@ -8,8 +8,7 @@ import { Hiridium } from "../Utils/Client";
 export interface Command {
   data: SlashCommandBuilder;
   execute(
-    interaction: CommandInteraction | 
-    ChatInputCommandInteraction,
+    interaction: CommandInteraction | ChatInputCommandInteraction,
     client?: Hiridium
   ): Promise<void>;
 }

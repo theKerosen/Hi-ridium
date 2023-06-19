@@ -10,25 +10,25 @@ export = {
     ),
   async execute(interaction) {
     const modal = new BModal()
-      .createModal("sugestão", "Sugestão")
-      .addText(
-        "SuggestionInput1",
-        `Qual é a ideia, ${interaction.user.username}?`,
-        TextInputStyle.Short,
-        "Mais cupcakes no chat geral.",
-        24,
-        150,
-        true
-      )
-      .addText(
-        "SuggestionInput2",
-        `Conte me mais, ${interaction.user.username}!`,
-        TextInputStyle.Paragraph,
-        "Se os administradores conseguissem bancar uma festa...",
-        68,
-        250,
-        true
-      );
+      .createModal({ custom_id: "sugestão", title: "Sugestão" })
+      .addText({
+        custom_id: "SuggestionInput1",
+        label: `Qual é a ideia, ${interaction.user.username}?`,
+        style: TextInputStyle.Short,
+        placeholder: "Mais cupcakes no chat geral.",
+        min_length: 24,
+        max_length: 150,
+        required: true,
+      })
+      .addText({
+        custom_id: "SuggestionInput2",
+        label: `Conte me mais, ${interaction.user.username}!`,
+        style: TextInputStyle.Paragraph,
+        placeholder: "Se os administradores conseguissem bancar uma festa...",
+        min_length: 68,
+        max_length: 250,
+        required: true,
+      });
     await interaction.showModal(modal);
   },
 } as Command;

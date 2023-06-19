@@ -61,7 +61,7 @@ export = {
       const Comment = interaction.options.getString("comentário");
       const User = interaction.options.getUser("usuário");
 
-      if (User?.id === interaction?.user?.id)
+      if (User?.id === interaction.user.id)
         return interaction.reply({
           content:
             "[❌] Você não pode adicionar pontos de reputação a si mesmo.",
@@ -94,16 +94,15 @@ export = {
           upsert: true,
         }
       );
-      const Reply = new BEmbed().setADC(
-        {
+      const Reply = new BEmbed().setADC({
+        author: {
           name: `${User?.username}🤝${interaction.user.username}`,
         },
-        `**🤑 | REPUTAÇÃO ADICIONADA! **\n
-        ` +
-          codeBlock(`${User?.username} recebeu ponto de reputação de ${interaction.user.username}.\n
-        ${interaction.user.username} comentou: "${Comment}"`),
-        "Blurple"
-      );
+        description: `**🤑 | REPUTAÇÃO ADICIONADA! **\n
+          ${codeBlock(`${User?.username} recebeu ponto de reputação de ${interaction.user.username}.\n
+        ${interaction.user.username} comentou: "${Comment}"`)}`,
+        color: "Blurple",
+      });
 
       interaction.reply({ embeds: [Reply] });
     }
@@ -143,15 +142,15 @@ export = {
           upsert: true,
         }
       );
-      const Reply = new BEmbed().setADC(
-        {
+      const Reply = new BEmbed().setADC({
+        author: {
           name: `${User?.username}🖕 ${interaction.user.username}`,
         },
-        `**💸 | REPUTAÇÃO REMOVIDA! **\n` +
-          codeBlock(`${User?.username} removeu um ponto de reputação de ${interaction.user.username}.\n
-          ${interaction.user.username} comentou: "${Comment}"`),
-        "Red"
-      );
+        description: `**💸 | REPUTAÇÃO REMOVIDA! **\n
+          ${codeBlock(`${User?.username} removeu um ponto de reputação de ${interaction.user.username}.\n
+          ${interaction.user.username} comentou: "${Comment}"`)}`,
+        color: "Red",
+      });
 
       interaction.reply({ embeds: [Reply] });
     }
@@ -164,11 +163,11 @@ export = {
           content: "[❌] Este usuário não tem reputação alguma.",
           ephemeral: true,
         });
-      const embed = new BEmbed().setADC(
-        { name: User?.username as string },
-        `Este usuário tem ${Index.Reputation} ponto(s) de reputação e ${Index.Comments.length} comentário(s)`,
-        "Blurple"
-      );
+      const embed = new BEmbed().setADC({
+        author: { name: User?.username as string },
+        description: `Este usuário tem ${Index.Reputation} ponto(s) de reputação e ${Index.Comments.length} comentário(s)`,
+        color: "Blurple",
+      });
       for (let i = 0; i < Index.Comments.length; i++) {
         const fetchUser = await client?.users.fetch(
           Object.keys(Index.Comments[i])[0]

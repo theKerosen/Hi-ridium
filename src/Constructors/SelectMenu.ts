@@ -23,65 +23,111 @@ import {
   RoleSelectMenuComponentData,
 } from "discord.js";
 export class StringMenuBuilding extends StringSelectMenuBuilder {
-  constructor(data?: Partial<StringSelectMenuComponentData | APIStringSelectComponent>) {
-    super(data as Partial<StringSelectMenuComponentData | APIStringSelectComponent>);
+  constructor(
+    data?: Partial<StringSelectMenuComponentData | APIStringSelectComponent>
+  ) {
+    super(
+      data as Partial<StringSelectMenuComponentData | APIStringSelectComponent>
+    );
   }
-  createStringMenu(customId: string, placeholder: string, disabled?: boolean) {
-   return super.setCustomId(customId).setPlaceholder(placeholder).setDisabled(disabled ?? false)
+  createStringMenu(StringMenu: {
+    customId: string;
+    placeholder: string;
+    disabled?: boolean;
+  }) {
+    return super
+      .setCustomId(StringMenu.customId)
+      .setPlaceholder(StringMenu.placeholder)
+      .setDisabled(StringMenu.disabled ?? false);
   }
   setOptions(Options: APISelectMenuOption[]) {
-   return super.addOptions(Options)
+    return super.addOptions(Options);
   }
   MaxValues(value: number) {
-    return super.setMaxValues(value)
+    return super.setMaxValues(value);
   }
   MinValues(value: number) {
-    return super.setMinValues(value)
+    return super.setMinValues(value);
   }
 }
 export class UserMenuBuilding extends UserSelectMenuBuilder {
-  constructor(data?: Partial<UserSelectMenuComponentData | APIUserSelectComponent>) {
-    super(data as Partial<UserSelectMenuComponentData | APIUserSelectComponent>);
+  constructor(
+    data?: Partial<UserSelectMenuComponentData | APIUserSelectComponent>
+  ) {
+    super(
+      data as Partial<UserSelectMenuComponentData | APIUserSelectComponent>
+    );
   }
-  createStringMenu(customId: string, placeholder: string, disabled?: boolean) {
-   return super.setCustomId(customId).setPlaceholder(placeholder).setDisabled(disabled ?? false)
+  UserMenu(User: {
+    customId: string;
+    placeholder: string;
+    disabled?: boolean;
+  }) {
+    return super
+      .setCustomId(User.customId)
+      .setPlaceholder(User.placeholder)
+      .setDisabled(User.disabled ?? false);
   }
   MaxValues(value: number) {
-    return super.setMaxValues(value)
+    return super.setMaxValues(value);
   }
   MinValues(value: number) {
-    return super.setMinValues(value)
+    return super.setMinValues(value);
   }
 }
 export class RoleMenuBuilding extends RoleSelectMenuBuilder {
-  constructor(data?: Partial<RoleSelectMenuComponentData | APIRoleSelectComponent>) {
-    super(data as Partial<RoleSelectMenuComponentData | APIRoleSelectComponent>);
+  constructor(
+    data?: Partial<RoleSelectMenuComponentData | APIRoleSelectComponent>
+  ) {
+    super(
+      data as Partial<RoleSelectMenuComponentData | APIRoleSelectComponent>
+    );
   }
-  createStringMenu(customId: string, placeholder: string, disabled?: boolean) {
-   return super.setCustomId(customId).setPlaceholder(placeholder).setDisabled(disabled ?? false)
+  createRoleMenu(Role: {
+    customId: string;
+    placeholder: string;
+    disabled?: boolean;
+  }) {
+    return super
+      .setCustomId(Role.customId)
+      .setPlaceholder(Role.placeholder)
+      .setDisabled(Role.disabled ?? false);
   }
   MaxValues(value: number) {
-    return super.setMaxValues(value)
+    return super.setMaxValues(value);
   }
   MinValues(value: number) {
-    return super.setMinValues(value)
+    return super.setMinValues(value);
   }
 }
 export class ChannelMenuBuilding extends ChannelSelectMenuBuilder {
-  constructor(data?: Partial<ChannelSelectMenuComponentData | APIChannelSelectComponent>) {
-    super(data as Partial<ChannelSelectMenuComponentData | APIChannelSelectComponent>);
+  constructor(
+    data?: Partial<ChannelSelectMenuComponentData | APIChannelSelectComponent>
+  ) {
+    super(
+      data as Partial<
+        ChannelSelectMenuComponentData | APIChannelSelectComponent
+      >
+    );
   }
-  createChannelMenu(customId: string, placeholder: string, disabled?: boolean) {
-   return super.setCustomId(customId).setPlaceholder(placeholder).setDisabled(disabled ?? false)
+  createChannelMenu(ChannelMenu: {
+    customId: string;
+    placeholder: string;
+    disabled?: boolean;
+  }) {
+    return super
+      .setCustomId(ChannelMenu.customId)
+      .setPlaceholder(ChannelMenu.placeholder)
+      .setDisabled(ChannelMenu.disabled ?? false);
   }
   MaxValues(value?: number) {
-    return super.setMaxValues(value ?? 5)
+    return super.setMaxValues(value ?? 5);
   }
   MinValues(value?: number) {
-    return super.setMinValues(value ?? 1)
+    return super.setMinValues(value ?? 1);
   }
   addChannelTypes(...types: ChannelType[]) {
-    return super.addChannelTypes(types)
+    return super.addChannelTypes(types);
   }
 }
 export class BStringMenu extends ActionRowBuilder<StringMenuBuilding> {
@@ -97,19 +143,27 @@ export class BStringMenu extends ActionRowBuilder<StringMenuBuilding> {
   ) {
     super(data);
   }
-  createStringMenu(custom_id: string, placeholder: string, disabled?: boolean) {
-  return super.addComponents(new StringMenuBuilding().setCustomId(custom_id).setPlaceholder(placeholder ?? "...").setDisabled(disabled ?? false))
-  
+  createStringMenu(StringMenu: {
+    custom_id: string;
+    placeholder: string;
+    disabled?: boolean;
+  }) {
+    return super.addComponents(
+      new StringMenuBuilding()
+        .setCustomId(StringMenu.custom_id)
+        .setPlaceholder(StringMenu.placeholder ?? "...")
+        .setDisabled(StringMenu.disabled ?? false)
+    );
   }
   setOptions(Options: APISelectMenuOption[]) {
-    return super.setComponents(this.components[0].setOptions(Options))
-   }
-   MaxValues(value?: number) {
-     return super.setComponents(this.components[0].setMaxValues(value ?? 5))
-   }
-   MinValues(value?: number) {
-    return super.setComponents(this.components[0].setMinValues(value ?? 1))
-   }
+    return super.setComponents(this.components[0].setOptions(Options));
+  }
+  MaxValues(value?: number) {
+    return super.setComponents(this.components[0].setMaxValues(value ?? 5));
+  }
+  MinValues(value?: number) {
+    return super.setComponents(this.components[0].setMinValues(value ?? 1));
+  }
 }
 
 export class BChannelMenu extends ActionRowBuilder<ChannelMenuBuilding> {
@@ -125,18 +179,27 @@ export class BChannelMenu extends ActionRowBuilder<ChannelMenuBuilding> {
   ) {
     super(data);
   }
-  createChannelMenu(customId: string, placeholder: string, disabled?: boolean) {
-    return super.addComponents(new ChannelMenuBuilding().setCustomId(customId).setPlaceholder(placeholder ?? "...").setDisabled(disabled ?? false))
-   }
-   MaxValues(value?: number) {
-    return super.setComponents(this.components[0].setMaxValues(value ?? 5))
-   }
-   MinValues(value?: number) {
-    return super.setComponents(this.components[0].setMinValues(value ?? 1))
-   }
-   addChannelTypes(types: ChannelType[]) {
-     return super.setComponents(this.components[0].setChannelTypes(types))
-   }
+  createChannelMenu(ChannelMenu: {
+    customId: string;
+    placeholder: string;
+    disabled?: boolean;
+  }) {
+    return super.addComponents(
+      new ChannelMenuBuilding()
+        .setCustomId(ChannelMenu.customId)
+        .setPlaceholder(ChannelMenu.placeholder ?? "...")
+        .setDisabled(ChannelMenu.disabled ?? false)
+    );
+  }
+  MaxValues(value?: number) {
+    return super.setComponents(this.components[0].setMaxValues(value ?? 5));
+  }
+  MinValues(value?: number) {
+    return super.setComponents(this.components[0].setMinValues(value ?? 1));
+  }
+  addChannelTypes(types: ChannelType[]) {
+    return super.setComponents(this.components[0].setChannelTypes(types));
+  }
 }
 
 export class BUserMenu extends ActionRowBuilder<UserMenuBuilding> {
@@ -152,15 +215,24 @@ export class BUserMenu extends ActionRowBuilder<UserMenuBuilding> {
   ) {
     super(data);
   }
-  createChannelMenu(customId: string, placeholder: string, disabled?: boolean) {
-    return super.addComponents(new UserMenuBuilding().setCustomId(customId).setPlaceholder(placeholder ?? "...").setDisabled(disabled ?? false))
-   }
-   MaxValues(value?: number) {
-    return super.setComponents(this.components[0].setMaxValues(value ?? 5))
-   }
-   MinValues(value?: number) {
-    return super.setComponents(this.components[0].setMinValues(value ?? 1))
-   }
+  createChannelMenu(UserMenu: {
+    customId: string;
+    placeholder: string;
+    disabled?: boolean;
+  }) {
+    return super.addComponents(
+      new UserMenuBuilding()
+        .setCustomId(UserMenu.customId)
+        .setPlaceholder(UserMenu.placeholder ?? "...")
+        .setDisabled(UserMenu.disabled ?? false)
+    );
+  }
+  MaxValues(value?: number) {
+    return super.setComponents(this.components[0].setMaxValues(value ?? 5));
+  }
+  MinValues(value?: number) {
+    return super.setComponents(this.components[0].setMinValues(value ?? 1));
+  }
 }
 export class BRoleMenu extends ActionRowBuilder<RoleMenuBuilding> {
   constructor(
@@ -175,13 +247,22 @@ export class BRoleMenu extends ActionRowBuilder<RoleMenuBuilding> {
   ) {
     super(data);
   }
-  createChannelMenu(customId: string, placeholder: string, disabled?: boolean) {
-    return super.addComponents(new RoleMenuBuilding().setCustomId(customId).setPlaceholder(placeholder ?? "...").setDisabled(disabled ?? false))
-   }
-   MaxValues(value?: number) {
-    return super.setComponents(this.components[0].setMaxValues(value ?? 5))
-   }
-   MinValues(value?: number) {
-    return super.setComponents(this.components[0].setMinValues(value ?? 1))
-   }
+  createRoleMenu(ChannelMenu: {
+    customId: string;
+    placeholder: string;
+    disabled?: boolean;
+  }) {
+    return super.addComponents(
+      new RoleMenuBuilding()
+        .setCustomId(ChannelMenu.customId)
+        .setPlaceholder(ChannelMenu.placeholder ?? "...")
+        .setDisabled(ChannelMenu.disabled ?? false)
+    );
+  }
+  MaxValues(value?: number) {
+    return super.setComponents(this.components[0].setMaxValues(value ?? 5));
+  }
+  MinValues(value?: number) {
+    return super.setComponents(this.components[0].setMinValues(value ?? 1));
+  }
 }

@@ -20,12 +20,12 @@ export const onInteraction = async (
       });
     }
   }
-  if (interaction.isButton()) {
+/*   if (interaction.isButton()) {
     (await import(`../IButtons/${interaction?.customId}`)).execute(
       interaction,
       client
     );
-  }
+  } */
   if (interaction.isStringSelectMenu()) {
     (await import(`../ISelectMenus/StringSelectMenu/${interaction?.customId}`)).execute(
       interaction,

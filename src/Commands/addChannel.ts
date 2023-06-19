@@ -41,17 +41,21 @@ export = {
     );
 
     const buttons = new BButton()
-      .addButton(
-        "button_changeReportChannel",
-        "Alt. Denúncias",
-        ButtonStyle.Success
-      )
-      .addButton(
-        "button_changeSuggestionChannel",
-        "Alt. Sugestões",
-        ButtonStyle.Success
-      );
+      .addButton({
+        customId: "button_changeReportChannel",
+        label: "Alt. Denúncias",
+        style: ButtonStyle.Success,
+      })
+      .addButton({
+        customId: "button_changeSuggestionChannel",
+        label: "Alt. Sugestões",
+        style: ButtonStyle.Success,
+      });
 
-    interaction.reply({ embeds: [embed], components: [buttons], ephemeral: true });
+    interaction.reply({
+      embeds: [embed],
+      components: [buttons],
+      ephemeral: true,
+    });
   },
 } as Command;

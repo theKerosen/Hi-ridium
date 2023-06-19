@@ -7,5 +7,4 @@ export const Init = async (client: Hiridium) => {
   client.application?.commands.set(client.commands.map((v: any) => v.data));
   client.user?.setStatus("idle");
   client.user?.setActivity({ name: "Follow my GitHub!" });
-
 };

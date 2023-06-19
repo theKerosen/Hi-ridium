@@ -12,15 +12,17 @@ export async function execute(
   const suggestionChannel = client.channels.cache.get(
     findChannel?.sChannelId ?? ""
   );
-  const embed = new BEmbed().setADC(
-    {
+  const embed = new BEmbed().setADC({
+    author: {
       name: `${
         interaction.user.username
       } > ${interaction.fields.getTextInputValue("SuggestionInput1")}`,
     },
-    `${codeBlock(interaction.fields.getTextInputValue("SuggestionInput2"))}`,
-    "Blue"
-  );
+    description: `${codeBlock(
+      interaction.fields.getTextInputValue("SuggestionInput2")
+    )}`,
+    color: "Blue",
+  });
 
   const message = await (suggestionChannel as TextChannel).send({
     embeds: [embed],

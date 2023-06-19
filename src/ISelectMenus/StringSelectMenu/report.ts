@@ -16,11 +16,11 @@ export async function execute(
   const reportedUser = client.users.cache.get(
     client.misc.get(`report_${interaction.user.id}`) as string
   );
-  const embed = new BEmbed().setADC(
-    { name: "⚠️| Denúncia" },
-    `${reportedUser} foi reportado por <@${interaction.user.id}>\n> Motivo: \`${interaction.values[0]}\``,
-    "Gold"
-  );
+  const embed = new BEmbed().setADC({
+    author: { name: "⚠️| Denúncia" },
+    description: `${reportedUser} foi reportado por <@${interaction.user.id}>\n> Motivo: \`${interaction.values[0]}\``,
+    color: "Gold",
+  });
   const reportChannel = (await client.channels.cache.get(
     findChannel?.dChannelId ?? ""
   )) as TextChannel;
