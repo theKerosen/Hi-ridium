@@ -1,7 +1,8 @@
 <h1 align="left">Hi-ridium Project
   <img src="https://cdn.discordapp.com/attachments/943547363031670785/1076471508861472788/Sem_Titulo-7.png" height="25"/></h1>
 
-Hi-ridium is a Project focused on my self-learning journey on how to make global, easily adaptable, highly configurable and fast Discord Bots.
+Hi-ridium was a Project focused on my self-learning journey on how to make global, easily adaptable, highly configurable and fast Discord BOTs,
+Now it is just a bunch of old spaghetti code.
 
 ## The environment variables!
 
